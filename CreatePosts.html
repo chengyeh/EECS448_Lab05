@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lab5 - Create Posts Interface</title>
+	</head>
+	<body style="font-family: Arial">
+		<h1>Create Post</h1>
+		<hr />
+		<form action="php/CreatePosts.php" method="post">
+			<div>
+				<label for="user_name" style="width:150px;margin-bottom:10px;display:inline-block">Your Username:</label><br>
+				<input type="text" name="user_name" id="user_name"/>
+				<span style="color:red">*</span>
+			</div>
+			<br>
+			<div>
+				<textarea name="content" rows="25" cols="100"></textarea>
+				<span style="color:red">*</span>
+			</div>
+			<br>
+			<div style="margin:5px auto;width:350px">
+				<button type="submit" style="font-weight:bold;border-radius:10px">Submit</button>
+				<a href="http://people.eecs.ku.edu/~clee28/EECS448/lab.html"><button type="button" style="font-weight:bold;border-radius:10px">Go Back</button></a>
+			</div>
+		</form>
+	</body>
+</html>

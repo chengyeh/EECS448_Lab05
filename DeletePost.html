@@ -1,0 +1,54 @@
+<?php
+    echo "<link href='php/css/delete_table.css' rel='stylesheet' type='text/css'>";
+
+    $mysqli = new mysqli("mysql.eecs.ku.edu", "clee28", "2482962", "clee28");
+    
+    if ($mysqli->connect_errno) {
+        printf("Connect failed: %s\n", $mysqli->connect_error);
+        exit();
+    }
+
+    $show_post = "SELECT author_id,content,post_id FROM Posts ORDER BY post_id ASC";
+    
+    function displayPost(){
+        $result = $GLOBALS['mysqli']->query($GLOBALS['show_post']);
+        
+        if(($result->num_rows) > 0)
+        {
+            echo "<div class='post_div'> <table><tr> <td>Author</td><td>Content</td><td>Delete?</td> </tr>";
+            while($row = $result->fetch_assoc())
+           {
+               echo "<tr><td>" . $row['author_id'] . "</td>";
+               echo "<td>" . $row['content'] . "</td>";
+               echo "<td><input type='checkbox' name='delete[]' value='" . $row['post_id'] . "'></td></tr>";
+           }  
+           echo "</table></div>";
+        }
+        else
+        {
+            echo "No post exists.";
+        }
+        
+    }
+?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lab5 - Delete Post</title>
+	</head>
+	<body style="font-family: Arial">
+		<h1>Delete Post</h1>
+		<hr />
+		<form action="php/DeletePost.php" method="post">
+			<div>
+				<?php displayPost(); ?>				
+			</div>
+			<br>
+			<div>
+				<button type="submit" style="margin:20px auto;font-weight:bold;border-radius:10px">Delete</button>
+				<a href="AdminHome.html"><button type="button" style="margin:20px auto;font-weight:bold;border-radius:10px">Go Back</button></a>			
+			</div>
+		</form>
+	</body>
+</html>
